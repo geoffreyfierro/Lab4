@@ -27,7 +27,7 @@ void integer_to_array(){
 }
 
 void blank_LED(){
-
+    P4->OUT = 0xFF;
 }
 
 void select_LED_Digit(int k){
