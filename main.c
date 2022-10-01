@@ -15,7 +15,8 @@ void GPIO_7_seg_display_init(){
 }
 
 void push_button_init(){
-
+    //Set P1.1 & P1.4 to input
+    P1->DIR &= ~(BIT1 | BIT4);
 }
 
 void NVIC_init(){
