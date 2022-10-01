@@ -31,11 +31,17 @@ void blank_LED(){
 }
 
 void select_LED_Digit(int k){
-
+    unsigned int LEDDigit[4]={~0b00000100, ~0x08, ~0x10, ~0x20}; //Digit Look-up Table
+    P8->OUT = LEDDigit[3-k];
 }
 
 void output_segments(int digit){
+    unsigned int sseg_table[16]={0b11000000,0b11111001,0b10100100,0b10110000,
+                       0B10011001,0b10010010,0b010000010,0b11111000,
+                       0b10000000,0b10010000,0b10001000,0b10000011,
+                       0b11000110,0b10100001,0b10000110,0b10001110};
 
+     P4->OUT = sseg_table[digit];
 }
 
 void display_LED(int k){
