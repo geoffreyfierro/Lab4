@@ -6,7 +6,10 @@
  */
 
 void GPIO_7_seg_display_init(){
-
+    //Set P8.2-5 to output for digits
+    P8->DIR |= BIT2 | BIT3 | BIT4 | BIT5;
+    //Set P4.0-6 to output for segments
+    P4->DIR |= BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6;
 }
 
 void push_button_init(){
