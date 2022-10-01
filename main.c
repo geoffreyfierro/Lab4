@@ -24,6 +24,22 @@ void push_button_init(){
 }
 
 void NVIC_init(){
+    //Set Interrupt on high-to-low transition
+    P1->IES |= BIT1;
+    P1->IES |= BIT4;
+
+    P1->IFG = 0;//Clear all P1 Interrupt flags
+
+    //Enable Interrupts
+    P1->IE |= BIT1;
+    P1->IE |= BIT4;
+
+    //Enable Interrupts for Port 1 on NVIC
+    NVIC->ISER[1] = 1 << (PORT1_IRQn - 32);
+    NVIC->IP[35] = 0x0; //Set Port 1 to highest priority
+}
+
+void PORT1_IRQHandler(void){
 
 }
 
