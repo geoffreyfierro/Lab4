@@ -7,6 +7,7 @@
  */
 //Global Variables
 int display[4] = {0,0,0,0};
+int counter = 0;
 
 void GPIO_7_seg_display_init(){
     //Set P8.2-5 to output for digits
@@ -40,11 +41,29 @@ void NVIC_init(){
 }
 
 void PORT1_IRQHandler(void){
+    int temp = P1->IV; //Read Interrupt Flag Register
 
+    if (temp == BIT1){
+        counter += 1;
+    }
+    if (temp == BIT4){
+        counter -= 1;
+    }
 }
 
 void integer_to_array(){
+    int temp = counter;
 
+    display[0] = temp / 1000;
+    temp = temp % 1000;
+
+    display[1] = temp / 100;
+    temp = temp % 100;
+
+    display[2] = temp / 10;
+    temp = temp % 10;
+
+    display[3] = temp;
 }
 
 void blank_LED(){
