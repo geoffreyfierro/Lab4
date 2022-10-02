@@ -93,10 +93,19 @@ void output_segments(int digit){
      P4->OUT = sseg_table[digit];
 }
 
+void set_neg_LED(){
+    if(counter < 0){
+        P5->OUT |= BIT0;
+    }
+    else
+        P5->OUT &= ~BIT0;
+}
+
 void display_LED(int k){
     blank_LED();
     select_LED_Digit(k);
     output_segments(display[k]);
+    set_neg_LED();
 }
 
 void main(void)
