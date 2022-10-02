@@ -48,15 +48,16 @@ void NVIC_init(){
 void PORT1_IRQHandler(void){
     int temp = P1->IV; //Read Interrupt Flag Register
 
-    if (temp == 4){
+    if (temp == 4){ //If SW1 is pressed
         counter += 1;
     }
-    if (temp == 10){
+    if (temp == 10){ // If SW 2 is pressed
         counter -= 1;
     }
 }
 
 void integer_to_array(){
+    //Convert Counter value to digits on the display
     int temp = counter;
 
     display[0] = temp / 1000;
