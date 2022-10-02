@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 
+
 /**
  * main.c
  */
@@ -22,6 +23,10 @@ void GPIO_7_seg_display_init(){
 void push_button_init(){
     //Set P1.1 & P1.4 to input
     P1->DIR &= ~(BIT1 | BIT4);
+
+    //Set P1.1 & P1.4 to GPIO
+    P1->SEL0 &= ~(BIT1 | BIT4);
+    P1->SEL1 &= ~(BIT1 | BIT4);
 }
 
 void NVIC_init(){
@@ -43,10 +48,10 @@ void NVIC_init(){
 void PORT1_IRQHandler(void){
     int temp = P1->IV; //Read Interrupt Flag Register
 
-    if (temp == BIT1){
+    if (temp == 4){
         counter += 1;
     }
-    if (temp == BIT4){
+    if (temp == 10){
         counter -= 1;
     }
 }
