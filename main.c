@@ -1,14 +1,13 @@
 #include "msp.h"
 #include <stdio.h>
-
-
+#include <stdlib.h>
 
 /**
  * main.c
  */
 //Global Variables
 int display[4] = {0,0,0,0};
-int counter = 0;
+int16_t counter = 0;
 
 void GPIO_7_seg_display_init(){
     //Set P8.2-5 to output for digits
@@ -62,7 +61,7 @@ void PORT1_IRQHandler(void){
 
 void integer_to_array(){
     //Convert Counter value to digits on the display
-    int temp = counter;
+    int temp = abs(counter);
 
     display[0] = temp / 1000;
     temp = temp % 1000;
