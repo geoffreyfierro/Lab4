@@ -27,6 +27,10 @@ void push_button_init(){
     //Set P1.1 & P1.4 to GPIO
     P1->SEL0 &= ~(BIT1 | BIT4);
     P1->SEL1 &= ~(BIT1 | BIT4);
+
+    //Set P1.1 & P1.4 to pull-up
+    P1->REN |= BIT1 | BIT4;
+    P1->OUT |= BIT1 | BIT4;
 }
 
 void NVIC_init(){
